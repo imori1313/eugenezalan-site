@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import Arrow from '../components/Arrow.astro';
+import EnquiryBanner from '../components/EnquiryBanner.astro';
+const steps=[
+  ['Begin with a conversation','A piece you love. A space you are considering. A new idea. Tell me what matters to you and how you want the furniture to be used.'],
+  ['Find the direction','We discuss the design, dimensions, materials and the scope of the work. A piece from the collection can be the starting point for that conversation.'],
+  ['Agree the commission','The proposed design, specification, quotation, payment terms and schedule are agreed before making begins.'],
+  ['Bring it into being','The agreed design moves into production. How we keep in touch during this stage is arranged as part of your commission.'],
+  ['Give it a place','Delivery and any installation requirements are discussed for your location and the finished piece.'],
+];
+---
+<Layout title="Bespoke furniture commissions — Eugene Zalan, London" description="Discuss a bespoke sideboard, cabinet or individual furniture commission with Eugene Zalan. Explore the process from an initial conversation to making and delivery." pageClass="commission-page">
+  <section class="commission-hero shell"><span class="eyebrow">BESPOKE FURNITURE / LONDON</span><h1>Your space.<br/>An original <em>piece.</em></h1><div><p>Start with the collection, or with an idea of your own. We’ll discuss what the piece could become — and what it needs to do for you.</p><a class="button" href="/contact">Discuss a commission <Arrow/></a></div></section>
+  <div class="commission-image"><Photo src="/images/projects/whartlights/open-interior.png" alt="Wharflights sideboard with the storage interior revealed" eager sizes="100vw"/></div>
+  <section class="commission-process section shell"><div><span class="eyebrow">A CLEAR PATH, FROM THE START</span><h2>From first thought<br/>to finished object.</h2></div><ol>{steps.map(([title,text],i)=><li data-reveal><span class="process-number">0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
+  <section class="faq-section shell"><div><span class="eyebrow">BEFORE WE BEGIN</span><h2>A few useful<br/>details.</h2></div><div class="faqs"><details><summary>Do I need a finished brief?<span aria-hidden="true">+</span></summary><p>No. A description of the room, the purpose of the piece and what you are drawn to is a useful starting point.</p></details><details><summary>Can I discuss a piece from the collection?<span aria-hidden="true">+</span></summary><p>Yes. Tell me which piece interests you and the size, finish or internal layout you would like to discuss. Available options are confirmed for each design.</p></details><details><summary>How much will a commission cost?<span aria-hidden="true">+</span></summary><p>A quotation is prepared around the design and agreed specification. You can include an approximate budget with your enquiry to help frame the discussion.</p></details><details><summary>What about timing and delivery?<span aria-hidden="true">+</span></summary><p>Share your preferred timing and location. Making time, delivery and any installation requirements are confirmed individually before you commission.</p></details><details><summary>Can I enquire for an interior design project?<span aria-hidden="true">+</span></summary><p>Yes. Include the project context, the piece you are considering and any specifications you already have.</p></details></div></section>
+  <EnquiryBanner title="What do you have in mind?"/>
+</Layout>

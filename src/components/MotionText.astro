@@ -1,0 +1,4 @@
+---
+const {text,as:Tag='span',class:className='',direction='up',immediate=false}=Astro.props;
+---
+<Tag class:list={['motion-text',className]} data-motion-text data-direction={direction} data-immediate={immediate||undefined} aria-label={text}>{text.split(' ').map((word:string,i:number)=><span class="motion-word" aria-hidden="true"><span style={`--word-i:${i}`}>{word}</span></span>)}</Tag>

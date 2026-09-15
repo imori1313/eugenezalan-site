@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import EnquiryBanner from '../../components/EnquiryBanner.astro';
+import {projects} from '../../data/projects';
+---
+<Layout title="Collection — Sculptural sideboards & cabinets | Eugene Zalan" description="Explore the Eugene Zalan collection of sculptural sideboards and cabinets. Discover each piece, its inspiration and possibilities for a bespoke commission." pageClass="collection-page">
+  <section class="collection-intro shell"><div class="page-kicker"><span class="eyebrow">FURNITURE AS AN OBJECT OF EXPRESSION</span><span class="eyebrow">01—07</span></div><h1>The <em>collection.</em></h1><div class="collection-intro-bottom"><span class="collection-line" aria-hidden="true"></span><p>Seven distinct points of view.<br/>Explore the forms, surfaces and stories behind the pieces.</p><a class="text-link" href="/commission">A piece for your space <Arrow/></a></div></section>
+  <section class="collection-list shell" aria-label="Furniture collection">{projects.map((p,i)=><article class:list={['collection-piece',`collection-piece-${i+1}`]} style={`--piece-accent:${p.accent}`} data-reveal><div class="collection-meta"><span class="piece-index">0{i+1}</span><span class="eyebrow">{p.kind}</span></div><a class="collection-image project-image" href={`/projects/${p.slug}`} aria-label={`Explore ${p.name}`}><Photo src={p.cover} alt={p.gallery[0].alt} eager={i===0} sizes={i===0?'100vw':'(min-width: 900px) 70vw, 100vw'}/><span class="image-action">Discover {p.name} <Arrow/></span></a><div class="collection-caption"><h2><a href={`/projects/${p.slug}`}>{p.name}</a></h2><div><p>{p.concept}</p><span class="collection-status">Price & commission availability on enquiry</span></div><a class="circle-link" href={`/projects/${p.slug}`} aria-label={`Discover ${p.name}`}><Arrow/></a></div></article>)}</section>
+  <EnquiryBanner title="Which piece speaks to you?"/>
+</Layout>

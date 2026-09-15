@@ -1,0 +1,103 @@
+/* One portrait and one scroll-driven typographic layer, on every screen size. */
+.scroll-about {
+  height: 215svh;
+  min-height: 1400px;
+  --about-words-y: 10svh;
+  --about-portrait-y: 55svh;
+}
+.scroll-about-stage {
+  height: 100svh;
+  min-height: 640px;
+  isolation: isolate;
+}
+.scroll-about-portrait {
+  left: 50%;
+  top: 0;
+  width: 44%;
+  max-width: 560px;
+  height: 76%;
+  border-radius: 6px;
+  transform: translate3d(-50%, var(--about-portrait-y), 0);
+}
+.scroll-about-portrait img { object-position: center 35%; }
+.scroll-about-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0001, #0003 65%, #0005);
+  pointer-events: none;
+}
+.scroll-about-words {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 84%;
+  max-width: 1100px;
+  margin: 0;
+  padding: 0;
+  transform: translate3d(-50%, var(--about-words-y), 0);
+  will-change: transform;
+}
+.scroll-about-words > p {
+  font-size: clamp(37px, 5.2vw, 78px);
+  line-height: 1.06;
+  text-shadow: 0 2px 18px #0005;
+}
+.scroll-about-words .pill-link {
+  color: #fff;
+  border-color: #ffffff90;
+  background: #101010d9;
+  margin-top: 28px;
+}
+@media (max-width: 900px) {
+  .scroll-about-portrait { width: 60%; max-width: 540px; }
+  .scroll-about-words { width: 88%; }
+  .scroll-about-words > p { font-size: clamp(36px, 6.2vw, 56px); }
+}
+@media (max-width: 600px) {
+  .scroll-about { height: 210svh; min-height: 1300px; }
+  .scroll-about-stage { min-height: 600px; }
+  .scroll-about-portrait { width: 78%; height: 72%; }
+  .scroll-about-words { width: calc(100% - 40px); }
+  .scroll-about-words > p { font-size: clamp(27px, 7.6vw, 43px); line-height: 1.1; }
+  .scroll-about-words .pill-link { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-about { height: auto; min-height: 0; padding-block: 60px; }
+  .scroll-about-stage {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-inline: var(--gutter);
+  }
+  .scroll-about-words, .scroll-about-portrait {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    will-change: auto;
+  }
+  .scroll-about-words { width: 100%; order: 0; }
+  .scroll-about-portrait { width: min(100%, 480px); height: 540px; order: 1; align-self: center; }
+}
+
+/* Seven rays on mouse-driven desktop layouts; matching vertex counts let
+   the mask expand smoothly into the original rectangular photograph. */
+@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
+  .original-process-grid .process-image img {
+    clip-path: polygon(50% 0%, 57.810% 28.377%, 79.319% 18.826%, 67.549% 44.659%, 86.560% 61.126%, 64.073% 64.964%, 66.271% 95.048%, 50% 74%, 33.729% 95.048%, 35.927% 64.964%, 13.440% 61.126%, 32.451% 44.659%, 20.681% 18.826%, 42.190% 28.377%);
+    transition: clip-path .8s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1);
+  }
+  .original-process-grid .process-image:hover img,
+  .original-process-grid .process-image:focus-visible img {
+    clip-path: polygon(50% 0%, 75% 0%, 100% 0%, 100% 33.333%, 100% 66.667%, 100% 100%, 75% 100%, 50% 100%, 25% 100%, 0% 100%, 0% 66.667%, 0% 33.333%, 0% 0%, 25% 0%);
+    transform: scale(1.015);
+  }
+  .original-process-grid .process-image:focus-visible {
+    outline: 1px solid #f1d36b;
+    outline-offset: 6px;
+  }
+}

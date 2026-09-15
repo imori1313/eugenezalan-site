@@ -1,0 +1,14 @@
+---
+import inventory from '../../audit/asset-inventory.json';
+interface Props { src: string; alt: string; eager?: boolean; sizes?: string; class?: string; }
+const { src, alt, eager=false, sizes='100vw', class: className } = Astro.props;
+// Responsive derivatives are generated from the preserved source assets.
+const key = src.replace(/^\/images\//,'').replace(/\.[^.]+$/,'');
+const url = `/media/${key}`;
+const asset=inventory.assets.find(a=>a.path===`public${src}`);
+const width=asset?.width||2000;
+const height=asset?.height||1200;
+const widths=[640,1200,2000].filter((w,i,all)=>i===0||Math.min(width,w)!==Math.min(width,all[i-1]));
+const srcset=widths.map(w=>`${url}-${w}.webp ${Math.min(width,w)}w`).join(', ');
+---
+<img class={className} src={`${url}-1200.webp`} srcset={srcset} sizes={sizes} width={width} height={height} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchpriority={eager?'high':'auto'} />

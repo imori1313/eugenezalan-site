@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import Gallery from '../../components/Gallery.astro';
+import EnquiryBanner from '../../components/EnquiryBanner.astro';
+import {projects} from '../../data/projects';
+export function getStaticPaths(){return projects.map((project,index)=>({params:{slug:project.slug},props:{project,index}}));}
+const {project:p,index}=Astro.props;
+const related=[projects[(index+1)%projects.length],projects[(index+3)%projects.length]];
+const enquiry=`/contact?piece=${encodeURIComponent(p.name)}`;
+---
+<Layout title={`${p.name} — ${p.kind} | Eugene Zalan`} description={p.description} pageClass={`project-page project-${p.slug}`}>
+  <section class="project-title shell"><a class="breadcrumb" href="/projects">← Collection</a><div class="project-title-row"><div><span class="eyebrow">{p.kind} / EUGENE ZALAN</span><h1>{p.name}</h1></div><div class="project-title-copy"><p>{p.concept}</p><a class="text-link" href={enquiry}>Enquire about this piece <Arrow/></a></div></div></section>
+  <div class="project-hero shell"><Photo src={p.cover} alt={p.gallery[0].alt} eager sizes="100vw"/></div>
+  <section class="project-story section shell" data-reveal><span class="eyebrow">01 / THE IDEA</span><div><h2>{p.concept}</h2><p>{p.story}</p></div></section>
+  <section class="project-detail"><div class="project-detail-image"><Photo src={p.closeup} alt={p.gallery.find(g=>g.src===p.closeup)?.alt||`${p.name} design detail`} sizes="(min-width: 900px) 55vw, 100vw"/></div><div class="project-detail-text" data-reveal><span class="eyebrow">02 / LOOK CLOSER</span><h2>Character,<br/>in every detail.</h2><p>{p.detail}</p><a class="text-link" href={enquiry}>Discuss the possibilities <Arrow/></a></div></section>
+  <figure class="project-full shell"><Photo src={p.interior} alt={p.gallery.find(g=>g.src===p.interior)?.alt||`${p.name} interior`} sizes="100vw"/><figcaption>{p.name} / A different perspective</figcaption></figure>
+  <section class="spec-section shell" data-reveal><div><span class="eyebrow">03 / THE PIECE, CONSIDERED</span><h2>Made personal.</h2><p>{p.description}</p><a class="button" href={enquiry}>Enquire about {p.name} <Arrow/></a></div><dl class="spec-list"><div><dt>Materials & surfaces</dt><dd>{p.materials}</dd></div><div><dt>Dimensions</dt><dd>Request the dimensions of the piece shown, or discuss the proportions you have in mind.</dd></div><div><dt>Finishes & configuration</dt><dd>Discuss the available options for this design.</dd></div><div><dt>Price & availability</dt><dd>Confirmed individually with your enquiry and the proposed specification.</dd></div><div><dt>Making & delivery</dt><dd>Timing and delivery arrangements are confirmed before you commission.</dd></div></dl></section>
+  <Gallery items={p.gallery} name={p.name}/>
+  <EnquiryBanner title="Imagine it in your space." piece={p.name}/>
+  <section class="related-section shell"><div class="section-heading"><span class="eyebrow">CONTINUE EXPLORING</span><h2>Other points of view.</h2><a class="text-link" href="/projects">Full collection <Arrow/></a></div><div class="related-grid">{related.map(r=><article class="project-card"><a class="project-image" href={`/projects/${r.slug}`}><Photo src={r.cover} alt={r.gallery[0].alt} sizes="(min-width: 700px) 45vw, 100vw"/><span class="image-action">Explore piece <Arrow/></span></a><div class="card-caption"><div><span class="eyebrow">{r.kind}</span><h3><a href={`/projects/${r.slug}`}>{r.name}</a></h3></div><a class="circle-link" href={`/projects/${r.slug}`} aria-label={`Explore ${r.name}`}><Arrow/></a></div></article>)}</div></section>
+</Layout>
