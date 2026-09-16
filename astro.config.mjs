@@ -15,7 +15,7 @@ export default defineConfig({
         const output = fileURLToPath(dir);
         if (path.resolve(output) !== path.resolve('dist')) throw new Error('Unexpected build directory');
         // Keep downloaded originals in public; ship only the optimized media.
-        for (const relative of ['images', 'videos/hero-original.mp4', 'videos/craft-original.mp4']) {
+        for (const relative of ['images', 'videos/hero-original.mp4', 'videos/hero-mobile-original.mp4', 'videos/craft-original.mp4']) {
           const target = path.resolve(output, relative);
           if (!target.startsWith(path.resolve(output) + path.sep)) throw new Error('Invalid output path');
           await rm(target, { recursive: true, force: true });

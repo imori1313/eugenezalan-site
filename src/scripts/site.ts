@@ -11,10 +11,10 @@ menu?.addEventListener('close', () => { document.body.classList.remove('scroll-l
 menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
 document.querySelectorAll<HTMLVideoElement>('[data-responsive-video]').forEach(video => {
-  video.src = (matchMedia('(max-width: 767px)').matches ? video.dataset.mobile : video.dataset.desktop) || '';
+  const mobileVideo = matchMedia('(max-width: 767px)');
   video.muted = true;
   const hero = video.closest<HTMLElement>('.hero-split');
-  const creditStart = Number(video.dataset.creditStart);
+  let creditStart = Infinity;
   const syncCredits = (time = video.currentTime) => {
     hero?.classList.toggle('is-credit-sequence', Number.isFinite(creditStart) && time >= creditStart);
   };
@@ -62,7 +62,17 @@ document.querySelectorAll<HTMLVideoElement>('[data-responsive-video]').forEach(v
     syncSound();
   });
   video.addEventListener('volumechange', syncSound); syncSound();
-  void video.play().catch(sync);
+  const selectFilm = () => {
+    const mobile = mobileVideo.matches;
+    creditStart = Number(mobile ? video.dataset.mobileCreditStart : video.dataset.creditStart);
+    video.poster = (mobile ? video.dataset.mobilePoster : video.dataset.desktopPoster) || '';
+    video.src = (mobile ? video.dataset.mobile : video.dataset.desktop) || '';
+    hero?.classList.remove('is-credit-sequence');
+    video.load();
+    void video.play().catch(sync);
+  };
+  mobileVideo.addEventListener('change', selectFilm);
+  selectFilm();
 });
 document.querySelectorAll<HTMLButtonElement>('[data-secondary-video-toggle]').forEach(button => {
   const video = button.parentElement?.querySelector('video'); if (!video) return;
