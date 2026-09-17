@@ -5,6 +5,8 @@ import '../styles/motion.css';
 import '../styles/hero-gallery.css';
 import '../styles/about-scroll.css';
 import '../styles/floating-contact.css';
+import '../styles/navigation.css';
+import LondonClock from '../components/LondonClock.astro';
 import Arrow from '../components/Arrow.astro';
 import {contact} from '../data/projects';
 const { title='Eugene Zalan — Sculptural furniture, made to commission', description='Discover sculptural sideboards and collectible furniture by Eugene Zalan. Explore the collection and discuss a bespoke furniture commission in London.', pageClass='' }=Astro.props;
@@ -27,9 +29,10 @@ const canonical=new URL(path,'https://eugenezalan.com');
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Eugene Zalan home">Eugene Zalan</a>
-      <nav class="desktop-nav" aria-label="Main navigation">{navigation.map(([name,href])=><a href={href} class:list={['nav-link',{'is-active':href==='/'?path==='/':path.startsWith(href)}]} aria-current={(href==='/'?path==='/':path.startsWith(href))?'page':undefined}><span data-roll>{name}</span></a>)}</nav>
-      <div class="header-location">London UK<span>Furniture Designer + Maker</span></div>
-      <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="/projects" class="collection-link" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a>{navigation.filter(([name])=>name==='About'||name==='Contact').map(([name,href])=><a href={href} class:list={['nav-link',{'is-active':path.startsWith(href)}]} aria-current={path.startsWith(href)?'page':undefined}><span data-roll>{name}</span></a>)}</nav>
+      <LondonClock/>
+      <a class="collection-link mobile-collection" href="/projects" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a>
+      <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false"><b>Menu</b><i aria-hidden="true"><span></span><span></span></i></button>
     </header>
     <dialog id="mobile-menu" class="mobile-menu">
       <div class="menu-top"><a class="wordmark" href="/">Eugene Zalan</a><button class="menu-close" aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>

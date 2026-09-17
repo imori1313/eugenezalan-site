@@ -1,4 +1,5 @@
 import './name-sparks';
+import './london-clock';
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)');
