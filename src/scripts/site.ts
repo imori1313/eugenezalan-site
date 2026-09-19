@@ -111,13 +111,18 @@ document.querySelectorAll<HTMLElement>('[data-commission-row]').forEach(row => {
   const trigger = row.querySelector('button');
   trigger?.addEventListener('click', () => { const open = row.classList.toggle('is-expanded'); trigger.setAttribute('aria-expanded', String(open)); });
 });
-const processDesktop = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
-const syncProcessFocus = () => document.querySelectorAll<HTMLElement>('.original-process-grid .process-image').forEach(image => {
-  if (processDesktop.matches) image.tabIndex = 0;
-  else image.removeAttribute('tabindex');
+document.querySelectorAll<HTMLButtonElement>('.original-process-grid .process-image').forEach(image => {
+  const setOpen = (open: boolean) => image.setAttribute('aria-expanded', String(open));
+  let touchInput = false;
+  image.addEventListener('pointerdown', event => { touchInput = event.pointerType !== 'mouse'; });
+  image.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse' && fine.matches) setOpen(true); });
+  image.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse' && fine.matches) setOpen(false); });
+  image.addEventListener('click', event => {
+    if (touchInput || !fine.matches || event.detail === 0) setOpen(image.getAttribute('aria-expanded') !== 'true');
+  });
+  image.addEventListener('blur', () => setOpen(false));
+  fine.addEventListener('change', () => setOpen(false));
 });
-processDesktop.addEventListener('change', syncProcessFocus);
-syncProcessFocus();
 
 const about = document.querySelector<HTMLElement>('[data-scroll-about]');
 if (about) {
