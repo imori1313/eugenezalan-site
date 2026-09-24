@@ -1,19 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {contact,projects} from '../data/projects';
+import {contact} from '../data/projects';
 import Photo from '../components/Photo.astro';
 import MotionText from '../components/MotionText.astro';
 ---
 <Layout title="Discuss a furniture commission — Contact Eugene Zalan" description="Talk to Eugene Zalan about a bespoke furniture commission. Share your ideas, the piece you are considering and the space you have in mind." pageClass="contact-page">
   <section class="contact-visual"><Photo src="/images/projects/la-clavelina/handle-closeup.jpeg" alt="Golden flower-shaped furniture handle by Eugene Zalan" eager sizes="100vw"/><MotionText as="h1" text="Get in touch" direction="down" immediate/></section>
   <section class="contact-section shell"><div class="contact-aside"><h2>Tell me what<br/>you have in mind</h2><p>A particular piece, a room, or the beginning of an idea. You don’t need to have every detail worked out.</p><div class="contact-direct"><span class="eyebrow">DIRECTLY TO EUGENE</span><a href={`mailto:${contact.email}`}>{contact.email}</a><a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a><a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="whatsapp-inline">Start a conversation on WhatsApp</a><span class="location-note">Based in London, United Kingdom</span></div></div>
-    <form class="enquiry-form" data-enquiry-form>
-      <div class="form-heading"><span class="eyebrow">YOUR ENQUIRY</span><span>Required fields *</span></div>
-      <div class="form-grid"><label>Your name *<input name="name" autocomplete="name" required maxlength="100"/></label><label>Email address *<input type="email" name="email" autocomplete="email" required maxlength="160"/></label><label>Location<input name="location" autocomplete="address-level2" placeholder="City / country" maxlength="160"/></label><label>Piece or project<select name="piece"><option value="">I’d like to discuss an idea</option>{projects.map(p=><option value={p.name}>{p.name}</option>)}<option value="Interior design project">Interior design project</option></select></label><label>Approximate budget<select name="budget"><option value="Prefer to discuss">Prefer to discuss</option><option>£7,000–£10,000</option><option>£10,000+</option></select></label><label>Preferred timing<input name="timeline" placeholder="If you have a date in mind" maxlength="160"/></label><label class="form-wide">Tell me about your project *<textarea name="message" rows="5" required minlength="10" maxlength="5000" placeholder="The space, the piece, the details that matter to you…"></textarea></label></div>
-      <p class="form-note">This prepares your enquiry for your email app. Nothing is sent until you send the email. You can also copy the enquiry or contact me directly.</p>
-      <button class="button" type="submit">Create email enquiry</button>
-      <p class="privacy-note">Read how your information is handled in the <a href="/privacy">privacy note</a>.</p>
-      <div class="enquiry-result" hidden aria-live="polite"><h3>Your enquiry is ready</h3><p>Open your email app to review and send it, or copy the text into your preferred email service.</p><div class="enquiry-actions"><a data-email-link class="button" href={`mailto:${contact.email}`}>Open email app</a><button type="button" class="button secondary" data-copy-enquiry>Copy enquiry</button></div><label class="draft-label">Your message<textarea data-email-preview readonly rows="9"></textarea></label><span class="copy-status" aria-live="polite"></span></div>
-    </form>
+    
   </section>
 </Layout>
+
+<style>.contact-section{grid-template-columns:1fr}.contact-aside{max-width:760px}</style>

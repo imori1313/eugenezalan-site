@@ -24,6 +24,6 @@ assert.equal(htmls.length,14,'Home + collection + 7 projects + about + commissio
 const home=await fs.readFile(path.join(dist,'index.html'),'utf8');
 assert(home.includes('data-responsive-video')&&home.includes('autoplay')&&home.includes('playsinline'),'Homepage autoplay video');
 const project=await fs.readFile(path.join(dist,'projects/ruyi/index.html'),'utf8');assert(project.includes('data-gallery')&&project.includes('gallery-dialog'),'Project fullscreen gallery');
-const contact=await fs.readFile(path.join(dist,'contact/index.html'),'utf8');assert(contact.includes('data-enquiry-form')&&contact.includes('Create email enquiry'),'Honest email enquiry flow');
+const contact=await fs.readFile(path.join(dist,'contact/index.html'),'utf8');assert(!contact.includes('<form')&&contact.includes('mailto:imori@europe.com'),'Direct email contact without enquiry form');
 console.log(`Verified ${htmls.length} pages: local links/media, unique SEO titles, headings, image descriptions, WhatsApp and enquiry/gallery structure.`);
 await fs.writeFile('audit/build-verification.json',JSON.stringify({checkedAt:new Date().toISOString(),pages:summaries,result:'passed',scope:'Static output and local asset references; no external message was sent.'},null,2));
