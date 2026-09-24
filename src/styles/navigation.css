@@ -47,3 +47,6 @@ body.faithful-home { padding-top:0; }
   .hero-actions .hero-enquiry { margin-top:18px; font-size:12px; }
   .feature-project-action { font-size:12px; gap:7px; }
 }
+
+.row-desktop-link{font-size:12px;color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+

@@ -1,5 +1,4 @@
 ---
-import Arrow from './Arrow.astro';
 const { title='Something in mind?', piece='' }=Astro.props;
 ---
-<section class="enquiry-banner shell" data-reveal><span class="eyebrow">A CONVERSATION IS A GOOD PLACE TO START</span><h2>{title}</h2><a class="button" href={`/contact${piece?`?piece=${encodeURIComponent(piece)}`:''}`}>{piece?`Enquire about ${piece}`:'Discuss a commission'} <Arrow/></a><a class="quiet-link" href="mailto:imori@europe.com">Or email me directly</a></section>
+<section class="enquiry-banner shell" data-reveal><span class="eyebrow">ENQUIRIES & COMMISSIONS</span><h2>{title}</h2><a class="button" href={`/contact${piece?`?piece=${encodeURIComponent(piece)}`:''}`}>{piece?`Enquire about ${piece}`:'Discuss a commission'}</a><a class="quiet-link" href="mailto:imori@europe.com">Or email me directly</a></section>
