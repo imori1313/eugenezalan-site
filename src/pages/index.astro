@@ -5,7 +5,8 @@ import Photo from '../components/Photo.astro';
 import Arrow from '../components/Arrow.astro';
 import MotionText from '../components/MotionText.astro';
 import {projects} from '../data/projects';
-const featured=[projects[6],projects[0],projects[2]];
+const darkBlue=projects.find(p=>p.slug==='dark-blue')!;
+const featured=[{...darkBlue,cover:darkBlue.gallery[1].src,gallery:[darkBlue.gallery[1]]},projects[0],projects[2]];
 const commissionRows=[
  {title:'Sculptural Sideboards',text:'An original focal point for your room. Explore the collection and discuss a piece for your space.',image:projects[1].cover,href:'/projects'},
  {title:'Cabinetry & Wardrobes',text:'Storage considered around the way you live — from a private bar to a personal collection.',image:'/images/details/commission-cabinetry.png',href:'/commission'},

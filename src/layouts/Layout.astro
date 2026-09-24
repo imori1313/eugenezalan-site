@@ -6,6 +6,7 @@ import '../styles/hero-gallery.css';
 import '../styles/about-scroll.css';
 import '../styles/floating-contact.css';
 import '../styles/navigation.css';
+import '../styles/back-to-top.css';
 import LondonClock from '../components/LondonClock.astro';
 import Arrow from '../components/Arrow.astro';
 import {contact} from '../data/projects';
@@ -25,13 +26,13 @@ const canonical=new URL(path,'https://eugenezalan.com');
     <link rel="icon" type="image/webp" href="/media/about/emblem-640.webp"/>
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin/>
   </head>
-  <body class={pageClass}>
+  <body class={pageClass} id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Eugene Zalan home">Eugene Zalan</a>
-      <nav class="desktop-nav" aria-label="Main navigation"><a href="/projects" class="collection-link" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a>{navigation.filter(([name])=>name==='About'||name==='Contact').map(([name,href])=><a href={href} class:list={['nav-link',{'is-active':path.startsWith(href)}]} aria-current={path.startsWith(href)?'page':undefined}><span data-roll>{name}</span></a>)}</nav>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="/" class:list={['nav-link',{'is-active':path==='/'}]} aria-current={path==='/'?'page':undefined}>Home</a><a href="/projects" class="collection-link" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a>{navigation.filter(([name])=>name==='About'||name==='Contact').map(([name,href])=><a href={href} class:list={['nav-link',{'is-active':path.startsWith(href)}]} aria-current={path.startsWith(href)?'page':undefined}><span data-roll>{name}</span></a>)}</nav>
       <LondonClock/>
-      <a class="collection-link mobile-collection" href="/projects" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a>
+      <div class="mobile-shortcuts"><a href="/" aria-current={path==='/'?'page':undefined}>Home</a><a class="collection-link" href="/projects" aria-current={path.startsWith('/projects')?'page':undefined}>Collection <Arrow/></a></div>
       <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false"><b>Menu</b><i aria-hidden="true"><span></span><span></span></i></button>
     </header>
     <dialog id="mobile-menu" class="mobile-menu">
@@ -49,6 +50,11 @@ const canonical=new URL(path,'https://eugenezalan.com');
       <span class="whatsapp-label">WHATSAPP</span>
       <svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.4-5A8.4 8.4 0 1 1 20.5 11.7Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 7.5c.3-.3.6-.3.8.1l1 2c.1.3 0 .5-.4 1-.2.2-.2.3 0 .6.8 1.4 1.8 2.3 3.2 2.8.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.2.3.4.2.7-.3 1-1 1.7-2.1 1.7-2.5 0-6.2-2.6-7.3-5.2-.6-1.5-.4-2.6.5-3.5Z" fill="currentColor"/></svg>
     </a>
+    <a class="star-top" href="#top" aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="top-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff2bc"/><stop offset=".4" stop-color="#d6a448"/><stop offset=".7" stop-color="#ffe4a0"/><stop offset="1" stop-color="#b58636"/></linearGradient></defs><path data-star-outline stroke="url(#top-gold)" stroke-width="1.4" stroke-linejoin="round" d="M32 6 36 22 47 17 42 28 58 32 42 36 47 47 36 42 32 58 28 42 17 47 22 36 6 32 22 28 17 17 28 22Z"/></svg>
+      <span>Back to top</span>
+    </a>
+    <script src="../scripts/back-to-top.ts"></script>
     <script src="../scripts/site.ts"></script>
   </body>
 </html>
