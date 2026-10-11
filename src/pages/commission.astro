@@ -4,27 +4,29 @@ import Photo from '../components/Photo.astro';
 import EnquiryBanner from '../components/EnquiryBanner.astro';
 import {commission} from '../data/commission';
 const steps = [
-  ['Choose a starting point', 'Tell me which piece you like and how you want to use it. We can start with a design from the collection or discuss a new idea for your room.'],
+  ['Tell me what you need', 'We start with your room, the purpose of the furniture, your preferred materials and your budget. You can choose from the collection or ask me to create a new design.'],
+  ['Develop the design', 'For a new piece, I develop the form, proportions, storage and details in my own sculptural style. We review the drawings and refine the design together before making begins.'],
   ['Agree the details', commission.approval],
   ['Making your furniture', 'Once you approve the specification and pay the 50% deposit, production begins. I oversee the machining, finishing and assembly, then check the piece before dispatch.'],
   ['Delivery and installation', 'We agree delivery and access to your home in advance. I or an experienced fitter from my network will assemble and position the piece. The remaining 50% is payable on delivery.'],
 ];
 const questions = [
+  ['Can you design something completely new for me?', 'Yes. I can create an original piece around your space and requirements, with the sculptural forms, surfaces and details that characterise my work. I handle the design development and making, from the first drawings to the finished furniture.'],
   ['Do I need a finished brief?', 'No. Tell me about the room, what you want to store and which designs you like. A photo of the space is a useful starting point.'],
   ['Can I adapt a design from the collection?', 'Yes. We can discuss colours, finishes and internal storage. The available changes depend on the design and are agreed before production.'],
   ['Can I see material samples?', 'We can look through relevant paint, veneer and other material samples before you approve the finish. The images on the collection pages are design visualisations.'],
   ['How much will a commission cost?', 'I prepare a quotation for the agreed specification, with delivery and installation clearly set out. Share an approximate budget if you have one.'],
-  ['How long does making take?', commission.leadTime],
+  ['How long does a commission take?', 'Collection pieces usually take 3–6 weeks to make after approval and a deposit. For a completely new design, I agree the design development and production schedule with you individually.'],
   ['How does payment work?', commission.payment],
   ['How will the furniture arrive?', 'Each piece is test-assembled and checked before dispatch. Where needed, it is disassembled for transport and reassembled in your home. Delivery and installation arrangements are agreed in your quotation.'],
   ['Can you work with my interior designer?', 'Yes. Your designer can contact me with the piece you are considering, the project location and any requirements.'],
 ];
 ---
-<Layout title="Bespoke furniture commissions — Eugene Zalan, London" description="Commission a bespoke sideboard or cabinet from London maker Eugene Zalan. Learn about materials, approval, 3–6 week making times, payment and installation." pageClass="commission-page">
+<Layout title="Bespoke furniture design & making — Eugene Zalan, London" description="Commission an original furniture design by Eugene Zalan in London, developed around your space and made to your requirements, from drawings to installation." pageClass="commission-page">
   <section class="commission-hero shell">
     <span class="eyebrow">BESPOKE FURNITURE / LONDON</span>
-    <h1>Furniture made<br/>for <em>your space</em></h1>
-    <div><p>Choose a sideboard or cabinet from the collection, or bring an idea of your own. You’ll work directly with me to agree the design, materials and finish.</p><a class="button" href="/contact">Discuss a commission</a></div>
+    <h1>Furniture designed<br/>for <em>you</em></h1>
+    <div><p>I design and make individual pieces of furniture around your space and requirements. Commission a completely new design in my sculptural style, or choose a starting point from the collection. You’ll work directly with me from the first drawings through to making and installation.</p><a class="button" href="/contact">Discuss a commission</a></div>
   </section>
   <div class="commission-image"><Photo src="/images/projects/whartlights/open-interior.png" alt="Design visualisation of Wharflights with the storage interior open" eager sizes="100vw"/></div>
   <section class="commission-process section shell">
@@ -32,7 +34,7 @@ const questions = [
     <ol>{steps.map(([title,text],i)=><li data-reveal><span class="process-number">0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
   </section>
   <section class="commission-terms shell" aria-label="Making, payment and delivery">
-    <div><h2>Making time<br/>and payment</h2><p>{commission.leadTime}</p><p>{commission.payment}</p></div>
+    <div><h2>Making time<br/>and payment</h2><p>Collection pieces usually take 3–6 weeks to make after you approve the specification and pay the deposit. For a new design, we agree the development and making schedule individually.</p><p>{commission.payment}</p></div>
     <div><h2>Delivery<br/>and installation</h2><p>{commission.delivery}</p><p>We check access and agree any on-site assembly before the piece is dispatched.</p></div>
   </section>
   <section class="faq-section shell">
