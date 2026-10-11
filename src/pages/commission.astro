@@ -2,18 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
 import EnquiryBanner from '../components/EnquiryBanner.astro';
-const steps=[
-  ['Begin with a conversation','Tell me about the room, the furniture you like and how you want to use the piece.'],
-  ['Find the direction','We discuss the design, dimensions, materials and the scope of the work. A piece from the collection can be the starting point for that conversation.'],
-  ['Agree the commission','The proposed design, specification, quotation, payment terms and schedule are agreed before making begins.'],
-  ['Making the piece','The agreed design moves into production. How we keep in touch during this stage is arranged as part of your commission.'],
-  ['Arrange delivery','Delivery and any installation requirements are discussed for your location and the finished piece.'],
+import {commission} from '../data/commission';
+const steps = [
+  ['Choose a starting point', 'Tell me which piece you like and how you want to use it. We can start with a design from the collection or discuss a new idea for your room.'],
+  ['Agree the details', commission.approval],
+  ['Making your furniture', 'Once you approve the specification and pay the 50% deposit, production begins. I oversee the machining, finishing and assembly, then check the piece before dispatch.'],
+  ['Delivery and installation', 'We agree delivery and access to your home in advance. I or an experienced fitter from my network will assemble and position the piece. The remaining 50% is payable on delivery.'],
+];
+const questions = [
+  ['Do I need a finished brief?', 'No. Tell me about the room, what you want to store and which designs you like. A photo of the space is a useful starting point.'],
+  ['Can I adapt a design from the collection?', 'Yes. We can discuss colours, finishes and internal storage. The available changes depend on the design and are agreed before production.'],
+  ['Can I see material samples?', 'We can look through relevant paint, veneer and other material samples before you approve the finish. The images on the collection pages are design visualisations.'],
+  ['How much will a commission cost?', 'I prepare a quotation for the agreed specification, with delivery and installation clearly set out. Share an approximate budget if you have one.'],
+  ['How long does making take?', commission.leadTime],
+  ['How does payment work?', commission.payment],
+  ['How will the furniture arrive?', 'Each piece is test-assembled and checked before dispatch. Where needed, it is disassembled for transport and reassembled in your home. Delivery and installation arrangements are agreed in your quotation.'],
+  ['Can you work with my interior designer?', 'Yes. Your designer can contact me with the piece you are considering, the project location and any requirements.'],
 ];
 ---
-<Layout title="Bespoke furniture commissions — Eugene Zalan, London" description="Discuss a bespoke sideboard, cabinet or individual furniture commission with Eugene Zalan. Explore the process from an initial conversation to making and delivery." pageClass="commission-page">
-  <section class="commission-hero shell"><span class="eyebrow">BESPOKE FURNITURE / LONDON</span><h1>Furniture made<br/>for <em>your space</em></h1><div><p>Start with the collection, or with an idea of your own. We’ll discuss what the piece could become — and what it needs to do for you.</p><a class="button" href="/contact">Discuss a commission</a></div></section>
-  <div class="commission-image"><Photo src="/images/projects/whartlights/open-interior.png" alt="Wharflights sideboard with the storage interior revealed" eager sizes="100vw"/></div>
-  <section class="commission-process section shell"><div><span class="eyebrow">THE COMMISSION PROCESS</span><h2>From design<br/>to delivery</h2></div><ol>{steps.map(([title,text],i)=><li data-reveal><span class="process-number">0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
-  <section class="faq-section shell"><div><span class="eyebrow">BEFORE WE BEGIN</span><h2>Before you commission</h2></div><div class="faqs"><details><summary>Do I need a finished brief?<span aria-hidden="true">+</span></summary><p>No. A description of the room, the purpose of the piece and what you are drawn to is a useful starting point.</p></details><details><summary>Can I discuss a piece from the collection?<span aria-hidden="true">+</span></summary><p>Yes. Tell me which piece interests you and the size, finish or internal layout you would like to discuss. Available options are confirmed for each design.</p></details><details><summary>How much will a commission cost?<span aria-hidden="true">+</span></summary><p>A quotation is prepared around the design and agreed specification. You can include an approximate budget with your enquiry to help frame the discussion.</p></details><details><summary>What about timing and delivery?<span aria-hidden="true">+</span></summary><p>Share your preferred timing and location. Making time, delivery and any installation requirements are confirmed individually before you commission.</p></details><details><summary>Can I enquire for an interior design project?<span aria-hidden="true">+</span></summary><p>Yes. Include the project context, the piece you are considering and any specifications you already have.</p></details></div></section>
+<Layout title="Bespoke furniture commissions — Eugene Zalan, London" description="Commission a bespoke sideboard or cabinet from London maker Eugene Zalan. Learn about materials, approval, 3–6 week making times, payment and installation." pageClass="commission-page">
+  <section class="commission-hero shell">
+    <span class="eyebrow">BESPOKE FURNITURE / LONDON</span>
+    <h1>Furniture made<br/>for <em>your space</em></h1>
+    <div><p>Choose a sideboard or cabinet from the collection, or bring an idea of your own. You’ll work directly with me to agree the design, materials and finish.</p><a class="button" href="/contact">Discuss a commission</a></div>
+  </section>
+  <div class="commission-image"><Photo src="/images/projects/whartlights/open-interior.png" alt="Design visualisation of Wharflights with the storage interior open" eager sizes="100vw"/></div>
+  <section class="commission-process section shell">
+    <div><span class="eyebrow">THE COMMISSION PROCESS</span><h2>From design<br/>to delivery</h2></div>
+    <ol>{steps.map(([title,text],i)=><li data-reveal><span class="process-number">0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+  </section>
+  <section class="commission-terms shell" aria-label="Making, payment and delivery">
+    <div><h2>Making time<br/>and payment</h2><p>{commission.leadTime}</p><p>{commission.payment}</p></div>
+    <div><h2>Delivery<br/>and installation</h2><p>{commission.delivery}</p><p>We check access and agree any on-site assembly before the piece is dispatched.</p></div>
+  </section>
+  <section class="faq-section shell">
+    <div><span class="eyebrow">BEFORE WE BEGIN</span><h2>Questions about<br/>your commission</h2></div>
+    <div class="faqs">{questions.map(([question,answer])=><details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+  </section>
   <EnquiryBanner title="What do you have in mind?"/>
 </Layout>

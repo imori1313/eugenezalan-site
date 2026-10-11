@@ -1,6 +1,6 @@
 export type Project = {
   slug: string; name: string; kind: string; concept: string; description: string;
-  story: string; detail: string; materials: string; cover: string; interior: string;
+  story: string; detail: string; materials: string; options: string; seoDescription: string; cover: string; interior: string;
   closeup: string; gallery: {src: string; alt: string}[]; accent: string;
 };
 const base = (slug: string, file: string) => `/images/projects/${slug}/${file}`;
@@ -11,7 +11,9 @@ export const projects: Project[] = [
     description: 'Circular relief, a dark silhouette and warm golden fluting. A sculptural sideboard with configurations for a home bar or a vinyl collection.',
     story: 'Ruyi begins with the looping forms of clouds at golden hour. Their movement becomes a carved rhythm across the doors, held in balance by the vertical lines at the centre of the piece.',
     detail: 'The sculptural front opens onto a different kind of composition: compartments for records, or space for glassware and the objects of an evening ritual. Discuss the layout that suits the way you live.',
-    materials: 'CNC-carved MDF, painted surfaces and wooden legs. The precise interior and finish are agreed for the selected configuration.',
+    materials:"CNC-carved MDF fronts, painted surfaces and wooden legs.",
+    options:"Discuss the paint finish and internal storage, including the home bar and vinyl configurations shown.",
+    seoDescription:"Ruyi, a sculptural sideboard by London maker Eugene Zalan. Carved circular relief, painted fronts and options for vinyl storage or a home bar. Made to order.",
     cover: base('ruyi','green-room.png'), interior: base('ruyi','open-vinyl.png'), closeup: base('ruyi','dark-room.png'),
     gallery: [
       {src: base('ruyi','green-room.png'), alt:'Ruyi sideboard with circular relief in a green interior'},
@@ -27,7 +29,9 @@ export const projects: Project[] = [
     description:'A deep blue relief surface meets a glass top with an expressive marbled artwork. Flowing lines draw the eye towards each handle.',
     story:'Dark-Blue explores the shifting character of a surface in the light. The dark blue finish gives the form depth; the movement of the glass artwork carries the eye across it.',
     detail:'The flowing relief continues around practical storage. A warm walnut-veneer interior creates a deliberate contrast with the cool exterior.',
-    materials:'Painted relief fronts, a glass top with marbled artwork, and walnut veneer inside. Hardware and final specification are discussed on enquiry.',
+    materials:"Painted relief fronts, a glass top with marbled artwork, and a walnut-veneer interior.",
+    options:"Discuss colours, finishes and internal storage. Hardware and any changes to the design are agreed before making begins.",
+    seoDescription:"Commission Dark-Blue by London furniture maker Eugene Zalan: a bespoke sideboard with blue relief fronts, a marbled glass top and a walnut-veneer interior.",
     cover:base('dark-blue','room-view.jpg'), interior:base('dark-blue','open-drawer.jpg'), closeup:base('dark-blue','front-detail.jpg'),
     gallery:[
       {src:base('dark-blue','room-view.jpg'),alt:'Dark-Blue sideboard with a marbled glass top'},
@@ -43,7 +47,9 @@ export const projects: Project[] = [
     description:'A grid of dark and golden surfaces recalls city windows and reflections. An architectural sideboard with a warm interior.',
     story:'The starting point is London at night: towers reflected in glass and water, and the warmth of lit windows. The facade translates that impression into a measured rhythm of light and shadow.',
     detail:'Behind the geometric surface, walnut veneer gives the interior warmth. Storage can be discussed around glassware, serving pieces and the objects you want to keep close.',
-    materials:'Dark painted surfaces, gold-toned accents and a walnut-veneer interior. Final dimensions and finish are confirmed with the commission.',
+    materials:"Dark painted surfaces, gold-toned accents and a walnut-veneer interior.",
+    options:"Discuss the finish and storage for glassware, tableware or other objects. Available adaptations are confirmed for your commission.",
+    seoDescription:"Wharflights by Eugene Zalan is a bespoke sideboard inspired by London at night, with a geometric facade and walnut-veneer interior. Discuss a commission.",
     cover:base('whartlights','front-night.png'),interior:base('whartlights','open-interior.png'),closeup:base('whartlights','side-view.png'),
     gallery:[
       {src:base('whartlights','front-night.png'),alt:'Wharflights sideboard against the London skyline at night'},
@@ -60,7 +66,9 @@ export const projects: Project[] = [
     description:'A flowing facade, patinated colour and flower-shaped brass handles. A piece that reveals its character at close range.',
     story:'La Clavelina takes its starting point from the carnation. A soft wave and a central circle shape the front, while a dark frame gives the composition its structure.',
     detail:'The flower-shaped brass handles are designed and made by Eugene Zalan. Their form connects the larger composition to the small, tactile moment of opening a door.',
-    materials:'Precision-milled fronts, hand-applied patina, mirrored accents and signature brass handles. Enquire about the full specification.',
+    materials:"Precision-milled fronts with a hand-applied patina, mirrored details and brass flower handles designed and made by Eugene Zalan.",
+    options:"Discuss the patina, colours and internal storage. The final materials and finish are agreed before production.",
+    seoDescription:"La Clavelina, an Art Deco sideboard by London furniture maker Eugene Zalan. Patinated fronts, mirrored details and original brass flower handles. Made to order.",
     cover:base('la-clavelina','front-view.png'),interior:base('la-clavelina','open-interior.png'),closeup:base('la-clavelina','handle-side.png'),
     gallery:[
       {src:base('la-clavelina','front-view.png'),alt:'La Clavelina sideboard with a central circle and patinated facade'},
@@ -76,7 +84,9 @@ export const projects: Project[] = [
     description:'A moon-like centrepiece and an illuminated interior turn a bar cabinet into an object for the evening.',
     story:'Moon buffet brings the atmosphere of the Moon indoors. Its dark form makes room for a luminous focal point, changing the character of the room as daylight gives way to evening.',
     detail:'Glassware and favourite objects become part of the interior composition. Warm LED lighting reveals the display, with drawers for the practical things kept out of sight.',
-    materials:'An illuminated display interior with warm LED lighting and walnut drawers. Surface finishes and the full construction specification are confirmed on enquiry.',
+    materials:"A display interior with warm LED lighting and walnut drawers.",
+    options:"Discuss the surface finishes and bar storage. Lighting and construction details are agreed before production.",
+    seoDescription:"Commission Moon buffet by London maker Eugene Zalan: a bespoke bar cabinet with a moon-like centrepiece, warm display lighting and walnut drawers.",
     cover:base('moon-buffet','moon-front.png'),interior:base('moon-buffet','front-view.jpg'),closeup:base('moon-buffet','room-view.png'),
     gallery:[
       {src:base('moon-buffet','moon-front.png'),alt:'Moon buffet with an illuminated lunar centrepiece'},
@@ -91,7 +101,9 @@ export const projects: Project[] = [
     description:'Deep green surfaces, botanical artwork and mirrored reflections. A sideboard inspired by the plantain growing around us.',
     story:'Ōbako draws attention to a plant that is easy to walk past. The botanical motif takes its place at the centre of the piece, framed by deep green and an elongated leaf-like relief.',
     detail:'Matte surfaces sit beside a reflective botanical panel. Behind the facade, practical shelving creates space for tableware or a home bar.',
-    materials:'CNC-carved MDF, a deep green matte lacquer and a mirrored panel with botanical artwork. Interior finish is specified with the order.',
+    materials:"CNC-carved MDF, deep green matt lacquer and a mirrored panel with botanical artwork.",
+    options:"Discuss the lacquer colour, interior finish and shelving for tableware or a home bar.",
+    seoDescription:"Ōbako by Eugene Zalan is a bespoke botanical sideboard with carved MDF, green lacquer and a mirrored artwork panel. Designed in London and made to order.",
     cover:base('gisluotis','front-view.png'),interior:base('gisluotis','open-interior.png'),closeup:base('gisluotis','panel-detail.png'),
     gallery:[
       {src:base('gisluotis','front-view.png'),alt:'Obako green sideboard with a central botanical panel'},
@@ -107,7 +119,9 @@ export const projects: Project[] = [
     description:'A dark silhouette, ornamental brass details and doors that open to reveal a warmer world inside.',
     story:'Sherwood borrows its atmosphere from medieval England: candlelight, old libraries and the detail of carved metal. These references become a contemporary composition of ornament and shadow.',
     detail:'The doors open to either side, revealing organised storage. Interior and leg options give the piece different expressions, from a lighter finish to a warmer mahogany interior.',
-    materials:'A deep black finish, polished brass inlays and turned oak leg options. Interior materials and configuration are agreed for the selected edition.',
+    materials:"A black finish and polished brass inlays, with turned oak legs available.",
+    options:"Discuss the legs, storage layout and interior finish, including the mahogany option shown.",
+    seoDescription:"Sherwood, a sculptural cabinet by London furniture maker Eugene Zalan. Black surfaces, brass ornament and a choice of interiors. Discuss your commission.",
     cover:base('sherwood','front-view.png'),interior:base('sherwood','open-front.jpg'),closeup:base('sherwood','handle-detail.jpg'),
     gallery:[
       {src:base('sherwood','front-view.png'),alt:'Sherwood cabinet with ornamental brass details against a dark background'},

@@ -1,0 +1,65 @@
+/* Practical commission information shared by desktop and mobile pages. */
+.commission-intro-copy {
+  max-width: 36rem;
+  margin-top: 26px;
+  font-size: clamp(16px, 1.15vw, 18px);
+}
+.project-hero { margin-block: 0; }
+.design-note {
+  max-width: 52rem;
+  padding-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.piece-enquiry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+.piece-enquiry-actions .button { white-space: normal; }
+.commission-assurance {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 12%;
+  padding-block: 20px 80px;
+}
+.commission-assurance h2 { font-size: clamp(32px, 3.5vw, 54px); }
+.commission-assurance p { max-width: 38rem; }
+.commission-assurance .text-link { grid-column: 2; justify-self: start; }
+.commission-terms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+  padding-bottom: 100px;
+}
+.commission-terms > div { border-top: 1px solid var(--line); padding-top: 32px; }
+.commission-terms h2 { font-size: clamp(32px, 3.5vw, 54px); margin-bottom: 24px; }
+.commission-terms p { max-width: 38rem; }
+.commission-terms p + p { margin-top: 18px; }
+.contact-section { grid-template-columns: 1.1fr .9fr; }
+.contact-aside, .contact-next { min-width: 0; }
+.contact-aside > p { max-width: 36rem; }
+.contact-next { border-top: 1px solid var(--line); padding-top: 28px; }
+.contact-next h3 { font-size: clamp(28px, 3vw, 42px); margin-bottom: 24px; }
+.contact-next p { max-width: 34rem; }
+.contact-next .text-link { margin-top: 25px; }
+.enquiry-context { margin-bottom: 20px; font-size: 14px; }
+.enquiry-context strong { color: var(--text); font-weight: 500; }
+.enquiry-context[hidden] { display: none; }
+.contact-direct a { min-height: 44px; }
+.contact-direct .whatsapp-inline { font-size: 16px; }
+@media (max-width: 809px) {
+  .commission-assurance, .commission-terms, .contact-section { grid-template-columns: 1fr; gap: 32px; }
+  .commission-assurance .text-link { grid-column: 1; }
+  .commission-terms { padding-bottom: 70px; }
+  .contact-next { margin-top: 12px; }
+  .contact-direct { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .design-note { padding-inline: var(--gutter); }
+  .commission-intro-copy { margin-top: 20px; }
+  .commission-assurance { padding-bottom: 50px; }
+  .contact-aside h2 { overflow-wrap: anywhere; }
+}

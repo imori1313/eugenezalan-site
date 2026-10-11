@@ -11,7 +11,15 @@ for(const file of htmls){
  const title=s.match(/<title>(.*?)<\/title>/s)?.[1];assert(title&&title.length>10,`Title: ${route}`);assert(!allTitles.has(title),`Unique title: ${route}`);allTitles.add(title);
  assert(/<meta name="description" content="[^"]{30,}"/.test(s),`Description: ${route}`);
  assert(s.includes('https://wa.me/447709252900?text='),`WhatsApp on ${route}`);
- assert(s.includes(encodeURIComponent('Hi Eugene, I’m interested in discussing a bespoke furniture commission.')),`Exact WhatsApp message: ${route}`);
+ const isPiece=route.startsWith('projects/')&&route!=='projects/index.html';
+ const pieceName=isPiece?title.split(' — ')[0]:'';
+ const message=pieceName?`Hi Eugene, I’m interested in commissioning ${pieceName}. Could we discuss the price, finishes and delivery?`:'Hi Eugene, I’m interested in discussing a bespoke furniture commission.';
+ assert(s.includes(encodeURIComponent(message)),`Contextual WhatsApp message: ${route}`);
+ if(isPiece){
+  assert(s.includes(encodeURIComponent(`${pieceName} — commission enquiry`)),`Contextual email subject: ${route}`);
+  assert(s.includes('3–6 weeks')&&s.includes('50% deposit'),`Commission terms: ${route}`);
+  assert(s.includes('Design visualisations'),`Image disclosure: ${route}`);
+ }
  for(const match of s.matchAll(/\b(?:href|src|poster)="(\/[^"#?]*)(?:[?#][^"]*)?"/g)){
   const url=match[1];if(url.startsWith('//'))continue;const rel=decodeURIComponent(url.slice(1));
   const targets=[path.join(dist,rel),path.join(dist,rel,'index.html'),path.join(dist,rel+'.html')];
@@ -25,5 +33,6 @@ const home=await fs.readFile(path.join(dist,'index.html'),'utf8');
 assert(home.includes('data-responsive-video')&&home.includes('autoplay')&&home.includes('playsinline'),'Homepage autoplay video');
 const project=await fs.readFile(path.join(dist,'projects/ruyi/index.html'),'utf8');assert(project.includes('data-gallery')&&project.includes('gallery-dialog'),'Project fullscreen gallery');
 const contact=await fs.readFile(path.join(dist,'contact/index.html'),'utf8');assert(!contact.includes('<form')&&contact.includes('mailto:imori@europe.com'),'Direct email contact without enquiry form');
+assert(contact.includes('data-contact-page')&&contact.includes('data-enquiry-context'),'Contact page preserves a selected piece');
 console.log(`Verified ${htmls.length} pages: local links/media, unique SEO titles, headings, image descriptions, WhatsApp and enquiry/gallery structure.`);
 await fs.writeFile('audit/build-verification.json',JSON.stringify({checkedAt:new Date().toISOString(),pages:summaries,result:'passed',scope:'Static output and local asset references; no external message was sent.'},null,2));

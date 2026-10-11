@@ -1,14 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {contact} from '../data/projects';
+import {contact, projects} from '../data/projects';
+import {enquiryLinks} from '../data/enquiries';
 import Photo from '../components/Photo.astro';
 import MotionText from '../components/MotionText.astro';
+const enquiry = enquiryLinks();
 ---
 <Layout title="Discuss a furniture commission — Contact Eugene Zalan" description="Talk to Eugene Zalan about a bespoke furniture commission. Share your ideas, the piece you are considering and the space you have in mind." pageClass="contact-page">
   <section class="contact-visual"><Photo src="/images/projects/la-clavelina/handle-closeup.jpeg" alt="Golden flower-shaped furniture handle by Eugene Zalan" eager sizes="100vw"/><MotionText as="h1" text="Get in touch" direction="down" immediate/></section>
-  <section class="contact-section shell"><div class="contact-aside"><h2>Tell me what<br/>you have in mind</h2><p>A particular piece, a room, or the beginning of an idea. You don’t need to have every detail worked out.</p><div class="contact-direct"><span class="eyebrow">DIRECTLY TO EUGENE</span><a href={`mailto:${contact.email}`}>{contact.email}</a><a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a><a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="whatsapp-inline">Start a conversation on WhatsApp</a><span class="location-note">Based in London, United Kingdom</span></div></div>
-    
+  <section class="contact-section shell" data-contact-page data-project-names={JSON.stringify(projects.map(p => p.name))}>
+    <div class="contact-aside">
+      <p class="enquiry-context" data-enquiry-context hidden>Your enquiry: <strong data-enquiry-name></strong></p>
+      <h2 data-enquiry-heading>Tell me what<br/>you have in mind</h2>
+      <p>Tell me which piece you like, where it will go and when you need it. A photo of the room can help, but you don’t need a finished brief.</p>
+      <div class="contact-direct">
+        <span class="eyebrow">DIRECTLY TO EUGENE</span>
+        <a href={enquiry.email} data-enquiry-email>{contact.email}</a>
+        <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>
+        <a href={enquiry.whatsapp} data-enquiry-whatsapp target="_blank" rel="noopener noreferrer" class="whatsapp-inline"><span data-enquiry-chat-label>Start a conversation on WhatsApp</span></a>
+        <span class="location-note">Based in London, United Kingdom</span>
+      </div>
+    </div>
+    <div class="contact-next">
+      <h3>What happens next</h3>
+      <p>I’ll discuss the design and materials with you, then prepare a quotation with the making schedule and delivery arrangements. We agree the details before you pay the production deposit.</p>
+      <a class="text-link" href="/commission">Read about the commission process</a>
+    </div>
   </section>
+  <script src="../scripts/enquiry.ts"></script>
 </Layout>
-
-<style>.contact-section{grid-template-columns:1fr}.contact-aside{max-width:760px}</style>
