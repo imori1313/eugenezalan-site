@@ -42,7 +42,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug:'whartlights',name:'Wharflights',kind:'Architectural sideboard',accent:'#c4a679',
+    slug:'whartlights', price: 6900,name:'Wharflights',kind:'Architectural sideboard',accent:'#c4a679',
     concept:'A sideboard inspired by London after dark',
     description:'A grid of dark and golden surfaces recalls city windows and reflections. An architectural sideboard with a warm interior.',
     story:'The starting point is London at night: towers reflected in glass and water, and the warmth of lit windows. The facade translates that impression into a measured rhythm of light and shadow.',
