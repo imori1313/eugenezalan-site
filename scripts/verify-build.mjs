@@ -22,7 +22,7 @@ for(const file of htmls){
   assert.equal((s.match(/href="https:\/\/wa.me\//g)||[]).length,1,`Single direct WhatsApp CTA: ${route}`);
   assert(!s.includes('/contact?piece='),`No contact detour: ${route}`);
   assert(!s.includes('Discuss materials and finishes'),`Materials are explained in place: ${route}`);
-  const expectedPrice={'projects/dark-blue/index.html':'£7,000','projects/la-clavelina/index.html':'£9,000','projects/sherwood/index.html':'£7,800'}[route];
+  const expectedPrice={'projects/ruyi/index.html':'£5,900','projects/gisluotis/index.html':'£5,200','projects/moon-buffet/index.html':'£9,500','projects/dark-blue/index.html':'£7,000','projects/la-clavelina/index.html':'£9,000','projects/sherwood/index.html':'£7,800'}[route];
   if(expectedPrice) assert(s.includes(expectedPrice),`Approved price: ${route}`);
  }
  for(const match of s.matchAll(/\b(?:href|src|poster)="(\/[^"#?]*)(?:[?#][^"]*)?"/g)){

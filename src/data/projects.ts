@@ -6,7 +6,7 @@ export type Project = {
 const base = (slug: string, file: string) => `/images/projects/${slug}/${file}`;
 export const projects: Project[] = [
   {
-    slug: 'ruyi', name: 'Ruyi', kind: 'Sculptural sideboard', accent: '#bfa06c',
+    slug: 'ruyi', price: 5900, name: 'Ruyi', kind: 'Sculptural sideboard', accent: '#bfa06c',
     concept: 'Cloud-inspired relief with a golden centre',
     description: 'Circular relief, a dark silhouette and warm golden fluting. A sculptural sideboard with configurations for a home bar or a vinyl collection.',
     story: 'Ruyi begins with the looping forms of clouds at golden hour. Their movement becomes a carved rhythm across the doors, held in balance by the vertical lines at the centre of the piece.',
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug:'moon-buffet',name:'Moon buffet',kind:'Bar & display cabinet',accent:'#c9ba8e',
+    slug:'moon-buffet', price: 9500,name:'Moon buffet',kind:'Bar & display cabinet',accent:'#c9ba8e',
     concept:'A cabinet with an illuminated lunar centrepiece',
     description:'A moon-like centrepiece and an illuminated interior turn a bar cabinet into an object for the evening.',
     story:'Moon buffet brings the atmosphere of the Moon indoors. Its dark form makes room for a luminous focal point, changing the character of the room as daylight gives way to evening.',
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug:'gisluotis',name:'Ōbako',kind:'Botanical sideboard',accent:'#99b298',
+    slug:'gisluotis', price: 5200,name:'Ōbako',kind:'Botanical sideboard',accent:'#99b298',
     concept:'A botanical panel framed in green',
     description:'Deep green surfaces, botanical artwork and mirrored reflections. A sideboard inspired by the plantain growing around us.',
     story:'Ōbako draws attention to a plant that is easy to walk past. The botanical motif takes its place at the centre of the piece, framed by deep green and an elongated leaf-like relief.',
