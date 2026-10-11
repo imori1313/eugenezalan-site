@@ -12,13 +12,10 @@
   font-size: 13px;
   line-height: 1.6;
 }
-.piece-enquiry-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 22px;
-}
-.piece-enquiry-actions .button { white-space: normal; }
+.project-detail-text h3 { font-size: 20px; margin: 30px 0 14px; }
+.project-detail-text p + p { margin-top: 20px; }
+.spec-section .piece-price { font-size: clamp(28px, 3vw, 40px); color: var(--text); line-height: 1.25; margin-block: 24px 18px; }
+.piece-whatsapp { white-space: normal; max-width: 100%; text-align: center; }
 .commission-assurance {
   display: grid;
   grid-template-columns: 1fr 1fr;

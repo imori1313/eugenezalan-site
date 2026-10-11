@@ -19,6 +19,11 @@ for(const file of htmls){
   assert(s.includes(encodeURIComponent(`${pieceName} — commission enquiry`)),`Contextual email subject: ${route}`);
   assert(s.includes('3–6 weeks')&&s.includes('50% deposit'),`Commission terms: ${route}`);
   assert(s.includes('Design visualisations'),`Image disclosure: ${route}`);
+  assert.equal((s.match(/href="https:\/\/wa.me\//g)||[]).length,1,`Single direct WhatsApp CTA: ${route}`);
+  assert(!s.includes('/contact?piece='),`No contact detour: ${route}`);
+  assert(!s.includes('Discuss materials and finishes'),`Materials are explained in place: ${route}`);
+  const expectedPrice={'projects/dark-blue/index.html':'£7,000','projects/la-clavelina/index.html':'£9,000','projects/sherwood/index.html':'£7,800'}[route];
+  if(expectedPrice) assert(s.includes(expectedPrice),`Approved price: ${route}`);
  }
  for(const match of s.matchAll(/\b(?:href|src|poster)="(\/[^"#?]*)(?:[?#][^"]*)?"/g)){
   const url=match[1];if(url.startsWith('//'))continue;const rel=decodeURIComponent(url.slice(1));
